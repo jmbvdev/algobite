@@ -1,6 +1,7 @@
 import { RestaurantCardType } from "@/app/types/restaurant";
 import Link from "next/link";
 import React from "react";
+import Price from "../../Price/Price";
 
 const RestaurantCardSearch = ({
   restaurant,
@@ -22,7 +23,7 @@ const RestaurantCardSearch = ({
         </div>
         <div className="mb-9">
           <div className="font-light flex text-reg">
-            <p className="mr-4">{restaurant.price}</p>
+            <Price price={restaurant.price} />
             <p className="mr-4 capitalize">{restaurant.cuisine.name}</p>
             <p className="mr-4 capitalize">{restaurant.location.name}</p>
           </div>
