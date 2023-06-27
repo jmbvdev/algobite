@@ -62,7 +62,7 @@ const SearchSideBar = ({
               pathname: "/search",
               query: {
                 ...searchParams,
-                city: cuisine.name,
+                cuisine: cuisine.name,
               },
             }}
             className="font-light text-reg capitalize"
