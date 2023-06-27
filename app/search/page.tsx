@@ -1,5 +1,4 @@
 import React from "react";
-// import SearchHeader from "../components/search/SearchHeader/SearchHeader";
 import SearchSideBar from "../components/search/SearchSideBar/SearchSideBar";
 import RestaurantCardSearch from "../components/search/RestaurantCardSearch/RestaurantCardSearch";
 import SearchBar from "../components/SearchBar/SearchBar";
@@ -48,6 +47,7 @@ const fetchRestaurantsByCity = (searchParams: Search_Params) => {
     cuisine: true,
     location: true,
     slug: true,
+    reviews:true,
   };
 
   return prisma.restaurant.findMany({

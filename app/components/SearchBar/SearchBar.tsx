@@ -5,12 +5,17 @@ import React, { useState } from "react";
 
 const SearchBar = () => {
   const router = useRouter();
+
   const [location, setLocation] = useState("");
-  const handleClick=(location:string)=>{
+
+  const handleClick = (location: string) => {
     if (location === "") return;
+
     router.push(`/search?city=${location}`);
+
     setLocation("");
-  }
+  };
+
   return (
     <div className="text-left text-lg py-3 m-auto flex justify-center">
       <input
@@ -22,7 +27,7 @@ const SearchBar = () => {
       />
       <button
         className="rounded bg-red-600 px-9 py-2 text-white"
-        onClick={()=>handleClick(location)}
+        onClick={() => handleClick(location)}
       >
         Let's go
       </button>
