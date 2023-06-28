@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import Price from "../../Price/Price";
 import { calculateReviews } from "@/utils/calculateReviews";
+import Stars from "../../Stars/Stars";
 
 const RestaurantCardSearch = ({
   restaurant,
@@ -26,7 +27,7 @@ const RestaurantCardSearch = ({
       <div className="pl-5">
         <h2 className="text-3xl">{restaurant.name}</h2>
         <div className="flex items-start">
-          <div className="flex mb-2">*****</div>
+        <Stars reviews={restaurant.reviews} />
           <p className="ml-2 text-sm">{renderRating()}</p>
         </div>
         <div className="mb-9">

@@ -2,6 +2,7 @@ import { RestaurantCardType } from "@/app/types/restaurant";
 import Link from "next/link";
 import React from "react";
 import Price from "../Price/Price";
+import Stars from "../Stars/Stars";
 
 interface CardProps {
   restaurant: RestaurantCardType;
@@ -19,7 +20,7 @@ const RestaurantCard = ({ restaurant }: CardProps) => {
         <div className="p-1">
           <h3 className="font-bold text-2xl mb-2">{restaurant.name}</h3>
           <div className="flex items-start">
-            <div className="flex mb-2">*****</div>
+            <Stars reviews={restaurant.reviews} />
             {restaurant.reviews?.length && (
               <p className="ml-2">
                 {restaurant.reviews.length} review
