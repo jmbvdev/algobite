@@ -8,7 +8,7 @@ const RestaurantImages = ({ images }: { images: string[] }) => {
       </h1>
       <div className="flex flex-wrap">
         {images.map((image) => (
-          <img className="w-56 h-44 mr-1 mb-1" src={image} alt={image} />
+          <img className="w-56 h-44 mr-1 mb-1" src={image} alt={image} key={image} />
         ))}
       </div>
     </div>
