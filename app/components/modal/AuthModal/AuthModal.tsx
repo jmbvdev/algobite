@@ -2,7 +2,7 @@
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthModalInputs from "../AuthModalInputs/AuthModalInputs";
 
 const style = {
@@ -41,6 +41,28 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
     city: "",
   });
 
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    if (isSignIn) {
+      if (authInputs.password && authInputs.email) {
+        return setDisabled(false);
+      }
+    } else {
+      if (
+        authInputs.firstName &&
+        authInputs.lastName &&
+        authInputs.email &&
+        authInputs.password &&
+        authInputs.city &&
+        authInputs.phone
+      ) {
+        return setDisabled(false);
+      }
+    }
+    setDisabled(true);
+  }, [authInputs]);
+
   return (
     <div>
       <button
@@ -72,8 +94,15 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
                   "Create Your Algobite Account"
                 )}
               </h2>
-              <AuthModalInputs inputs={authInputs} handleChangeInput={handleChangeInput} isSignIn={isSignIn} />
-              <button className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400">
+              <AuthModalInputs
+                inputs={authInputs}
+                handleChangeInput={handleChangeInput}
+                isSignIn={isSignIn}
+              />
+              <button
+                className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400"
+                disabled={disabled}
+              >
                 {signButtonContent("Sign In", "Create Account")}
               </button>
             </div>

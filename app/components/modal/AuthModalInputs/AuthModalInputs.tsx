@@ -36,6 +36,7 @@ const AuthModalInputs = ({
             placeholder="Last Name"
             name="lastName"
             value={inputs.lastName}
+            onChange={handleChangeInput}
           />
         </div>
       )}
@@ -47,6 +48,7 @@ const AuthModalInputs = ({
           placeholder="Email"
           name="email"
           value={inputs.email}
+          onChange={handleChangeInput}
         />
       </div>
       {isSignIn ? null : (
@@ -57,6 +59,7 @@ const AuthModalInputs = ({
             placeholder="Phone"
             name="phone"
             value={inputs.phone}
+            onChange={handleChangeInput}
           />
           <input
             type="text"
@@ -64,6 +67,7 @@ const AuthModalInputs = ({
             placeholder="City"
             name="city"
             value={inputs.city}
+            onChange={handleChangeInput}
           />
         </div>
       )}
@@ -74,6 +78,7 @@ const AuthModalInputs = ({
           placeholder="Password"
           name="password"
           value={inputs.password}
+          onChange={handleChangeInput}
         />
       </div>
     </div>
