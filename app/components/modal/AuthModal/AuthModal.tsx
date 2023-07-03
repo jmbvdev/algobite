@@ -6,6 +6,7 @@ import { useEffect, useState, useContext } from "react";
 import AuthModalInputs from "../AuthModalInputs/AuthModalInputs";
 import useAuth from "@/hooks/useAuth";
 import { AuthenticationContext } from "@/app/context/AuthContext";
+import { CircularProgress } from "@mui/material";
 
 interface AuthHook {
   signin: ({
@@ -30,13 +31,17 @@ const style = {
 };
 
 export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
+
+  const { signin }: AuthHook = useAuth();
+
   const { error, data, loading, setAuthState } = useContext(
     AuthenticationContext
   );
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const { signin }: AuthHook = useAuth();
 
   const signButtonContent = (signIn: string, signUp: string) => {
     return isSignIn ? signIn : signUp;
@@ -104,33 +109,37 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div className="p-2 h-auto">
-            <div className="upppercase font-bold text-center pb-2 border-b mb-2">
-              <p className="text-sm">
-                {signButtonContent("Sign In", "Create Account")}
-              </p>
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            <div className="p-2 h-auto">
+              <div className="upppercase font-bold text-center pb-2 border-b mb-2">
+                <p className="text-sm">
+                  {signButtonContent("Sign In", "Create Account")}
+                </p>
+              </div>
+              <div className="m-auto">
+                <h2 className="text-2xl font-light text-center">
+                  {signButtonContent(
+                    "Login Into Your Account",
+                    "Create Your Algobite Account"
+                  )}
+                </h2>
+                <AuthModalInputs
+                  inputs={authInputs}
+                  handleChangeInput={handleChangeInput}
+                  isSignIn={isSignIn}
+                />
+                <button
+                  className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400"
+                  disabled={disabled}
+                  onClick={handleAuthClick}
+                >
+                  {signButtonContent("Sign In", "Create Account")}
+                </button>
+              </div>
             </div>
-            <div className="m-auto">
-              <h2 className="text-2xl font-light text-center">
-                {signButtonContent(
-                  "Login Into Your Account",
-                  "Create Your Algobite Account"
-                )}
-              </h2>
-              <AuthModalInputs
-                inputs={authInputs}
-                handleChangeInput={handleChangeInput}
-                isSignIn={isSignIn}
-              />
-              <button
-                className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400"
-                disabled={disabled}
-                onClick={handleAuthClick}
-              >
-                {signButtonContent("Sign In", "Create Account")}
-              </button>
-            </div>
-          </div>
+          )}
         </Box>
       </Modal>
     </div>

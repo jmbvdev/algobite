@@ -37,6 +37,7 @@ export default function AuthContext({
     data: null,
     error: null,
   });
+
   return (
     <AuthenticationContext.Provider value={{ ...authState, setAuthState }}>
       {children}
