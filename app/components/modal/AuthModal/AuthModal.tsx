@@ -6,17 +6,37 @@ import { useEffect, useState, useContext } from "react";
 import AuthModalInputs from "../AuthModalInputs/AuthModalInputs";
 import useAuth from "@/hooks/useAuth";
 import { AuthenticationContext } from "@/app/context/AuthContext";
-import { CircularProgress } from "@mui/material";
+import { Alert, CircularProgress } from "@mui/material";
 
 interface AuthHook {
-  signin: ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => Promise<void>;
-  signup: () => Promise<void>;
+  signin: (
+    {
+      email,
+      password,
+    }: {
+      email: string;
+      password: string;
+    },
+    handleClose: () => void
+  ) => Promise<void>;
+  signup: (
+    {
+      email,
+      password,
+      firstName,
+      lastName,
+      city,
+      phone,
+    }: {
+      email: string;
+      password: string;
+      firstName: string;
+      lastName: string;
+      city: string;
+      phone: string;
+    },
+    handleClose: () => void
+  ) => Promise<void>;
 }
 
 const style = {
@@ -37,11 +57,9 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
 
   const handleClose = () => setOpen(false);
 
-  const { signin }: AuthHook = useAuth();
+  const { signin, signup } = useAuth();
 
-  const { error, data, loading, setAuthState } = useContext(
-    AuthenticationContext
-  );
+  const { error, loading } = useContext(AuthenticationContext);
 
   const signButtonContent = (signIn: string, signUp: string) => {
     return isSignIn ? signIn : signUp;
@@ -87,7 +105,12 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
 
   const handleAuthClick = () => {
     if (isSignIn) {
-      signin({ email: authInputs.email, password: authInputs.password });
+      signin(
+        { email: authInputs.email, password: authInputs.password },
+        handleClose
+      );
+    } else {
+      signup(authInputs, handleClose);
     }
   };
 
@@ -137,6 +160,11 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
                 >
                   {signButtonContent("Sign In", "Create Account")}
                 </button>
+                {error ? (
+                  <Alert severity="error" className="mb-4">
+                    {error}
+                  </Alert>
+                ) : null}
               </div>
             </div>
           )}
