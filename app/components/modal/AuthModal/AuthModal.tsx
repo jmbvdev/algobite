@@ -7,6 +7,7 @@ import AuthModalInputs from "../AuthModalInputs/AuthModalInputs";
 import useAuth from "@/hooks/useAuth";
 import { AuthenticationContext } from "@/app/context/AuthContext";
 import { Alert, CircularProgress } from "@mui/material";
+import { AiOutlineClose } from "react-icons/ai";
 
 interface AuthHook {
   signin: (
@@ -44,10 +45,10 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  minWidth: { xs: 340, sm: 400 },
   bgcolor: "background.paper",
   boxShadow: 24,
-  p: 4,
+  p: { xs: 2, sm: 4 },
 };
 
 export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
@@ -119,9 +120,9 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
       <button
         onClick={handleOpen}
         className={`${signButtonContent(
-          "bg-blue-400 text-white",
+          "bg-sky-900 text-white text-sm sm:text-reg hover:bg-sky-800",
           ""
-        )} border p-1 px-4 rounded mr-3`}
+        )} border p-1 px-2 text-sm sm:text-reg sm:px-4 rounded mr-3`}
       >
         {signButtonContent("Sign in", "Sign up")}
       </button>
@@ -132,10 +133,15 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <div className="flex justify-end">
+            <button onClick={handleClose} className="p-2">
+              <AiOutlineClose className="text-gray-400" />
+            </button>
+          </div>
           {loading ? (
             <CircularProgress />
           ) : (
-            <div className="p-2 h-auto">
+            <div className="p-4 h-auto">
               <div className="upppercase font-bold text-center pb-2 border-b mb-2">
                 <p className="text-sm">
                   {signButtonContent("Sign In", "Create Account")}

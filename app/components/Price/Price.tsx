@@ -1,27 +1,43 @@
 import { PRICE } from "@prisma/client";
 import React from "react";
+import { BsCurrencyDollar } from "react-icons/bs";
 
 const Price = ({ price }: { price: PRICE }) => {
   const renderPrice = () => {
     if (price === PRICE.CHEAP) {
       return (
         <>
-          <span>$</span>
-          <span className="text-gray-400">$$$</span>
+          <div className="text-gray-400 mt-1">
+            <BsCurrencyDollar />
+          </div>
+          <div className="text-gray-400 mt-1">
+            <BsCurrencyDollar />
+          </div>
         </>
       );
     } else if (price === PRICE.REGULAR) {
       return (
-        <>
-          <span>$$</span>
-          <span className="text-gray-400">$$</span>
-        </>
+        <div className="mt-1 text-green-900 flex">
+          <BsCurrencyDollar />
+          <BsCurrencyDollar />
+          <div className="text-gray-400 flex">
+            <BsCurrencyDollar />
+            <BsCurrencyDollar />
+          </div>
+        </div>
       );
     } else {
-      return <span>$$$$</span>;
+      return (
+        <div className="mt-1 text-green-900 flex">
+          <BsCurrencyDollar />
+          <BsCurrencyDollar />
+          <BsCurrencyDollar />
+          <BsCurrencyDollar />
+        </div>
+      );
     }
   };
-  return <p className="flex mr-3">{renderPrice()}</p>;
+  return <div className="flex mr-3">{renderPrice()}</div>;
 };
 
 export default Price;

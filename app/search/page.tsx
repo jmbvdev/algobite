@@ -75,7 +75,7 @@ const page = async ({
 
   return (
     <>
-      <div className="bg-gradient-to-r to-[#5f6984] from-[#0f1f47] p-2">
+      <div className="bg-gradient-to-r to-[#5f6984] from-[#0f1f47] p-4 pb-8">
         <SearchBar />
       </div>
 
@@ -85,7 +85,7 @@ const page = async ({
           locations={locations}
           searchParams={searchParams}
         />
-        <div className="w-5/6">
+        <div className="w-4/6">
           {restaurants.length ? (
             <>
               {restaurants.map((restaurant) => (
@@ -96,7 +96,7 @@ const page = async ({
               ))}
             </>
           ) : (
-            <p>Sorry, there is not restaurants in this area</p>
+            <span>Sorry, there is not restaurants in this area</span>
           )}
         </div>
       </div>

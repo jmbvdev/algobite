@@ -10,22 +10,22 @@ interface CardProps {
 
 const RestaurantCard = ({ restaurant }: CardProps) => {
   return (
-    <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer">
+    <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer shadow-xl hover:shadow-2xl hover:-translate-y-2 transform-gpu">
       <Link href={`/restaurant/${restaurant.slug}`}>
         <img
           src={restaurant.main_image}
           alt={restaurant.name}
           className="w-full h-36"
         />
-        <div className="p-1">
+        <div className="flex flex-col gap-1 p-2 px-3">
           <h3 className="font-bold text-2xl mb-2">{restaurant.name}</h3>
           <div className="flex items-start">
             <Stars reviews={restaurant.reviews} />
             {restaurant.reviews?.length && (
-              <p className="ml-2">
+              <span className="ml-2">
                 {restaurant.reviews.length} review
                 {restaurant.reviews.length === 1 ? "" : "s"}
-              </p>
+              </span>
             )}
           </div>
           <div className="flex text-reg font-light capitalize">
@@ -33,7 +33,6 @@ const RestaurantCard = ({ restaurant }: CardProps) => {
             <Price price={restaurant.price} />
             <p>{restaurant.location.name}</p>
           </div>
-          <p className="text-sm mt-1 font-bold">Booked 3 times today</p>
         </div>
       </Link>
     </div>

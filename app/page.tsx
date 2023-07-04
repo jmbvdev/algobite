@@ -26,10 +26,12 @@ export default async function Home() {
   return (
     <main>
       <Header />
-      <div className="py-3 px-36 mt-10 flex flex-wrap">
-        {restaurants.map((restaurant) => (
-          <RestaurantCard restaurant={restaurant} key={restaurant.id} />
-        ))}
+      <div className="grid place-items-center min-h-screen">
+        <div className="py-3 sm:px-10 mt-10 grid gap-8 sm:grid-cols-1 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-10">
+          {restaurants.map((restaurant) => (
+            <RestaurantCard restaurant={restaurant} key={restaurant.id} />
+          ))}
+        </div>
       </div>
     </main>
   );

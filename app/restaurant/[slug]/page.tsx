@@ -52,9 +52,6 @@ const RestaurantDetail = async ({ params }: { params: { slug: string } }) => {
         <RestaurantImages images={restaurant.images}/>
         <RestaurantReviews reviews={restaurant.reviews} />
       </div>
-      <div className="w-[27%] relative text-reg">
-        <ReservationCard />
-      </div>
     </>
   );
 };
