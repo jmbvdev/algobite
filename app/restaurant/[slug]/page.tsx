@@ -1,4 +1,3 @@
-import ReservationCard from "@/app/components/restaurant/ReservationCard/ReservationCard";
 import RestaurantDescription from "@/app/components/restaurant/RestaurantDescription/RestaurantDescription";
 import RestaurantImages from "@/app/components/restaurant/RestaurantImages/RestaurantImages";
 import RestaurantNavBar from "@/app/components/restaurant/RestaurantNavBar/RestaurantNavBar";
@@ -17,7 +16,7 @@ interface Restaurant {
   description: string;
   images: string[];
   slug: string;
-  reviews:Review[];
+  reviews: Review[];
 }
 
 const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
@@ -31,11 +30,11 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
       description: true,
       images: true,
       slug: true,
-      reviews:true
+      reviews: true,
     },
   });
   if (!restaurant) {
-    notFound()
+    notFound();
   }
   return restaurant;
 };
@@ -44,12 +43,12 @@ const RestaurantDetail = async ({ params }: { params: { slug: string } }) => {
   const restaurant = await fetchRestaurantBySlug(params.slug);
   return (
     <>
-      <div className="bg-white w-[70%] rounded p-3 shadow">
+      <div className="bg-white w-full rounded p-4 shadow">
         <RestaurantNavBar slug={restaurant.slug} />
-        <RestaurantTitle title={restaurant.name}/>
-        <RestaurantRating reviews={restaurant.reviews}/>
+        <RestaurantTitle title={restaurant.name} />
+        <RestaurantRating reviews={restaurant.reviews} />
         <RestaurantDescription description={restaurant.description} />
-        <RestaurantImages images={restaurant.images}/>
+        <RestaurantImages images={restaurant.images} />
         <RestaurantReviews reviews={restaurant.reviews} />
       </div>
     </>

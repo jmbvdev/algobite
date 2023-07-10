@@ -18,19 +18,20 @@ const RestaurantCardSearch = ({
     else "";
   };
   return (
-    <div className="border-b flex pb-5 ml-4">
+    <div className="border-b flex pb-5 flex-col sm:flex-row">
       <img
         src={restaurant.main_image}
         alt={restaurant.name}
-        className="w-44 h-36 rounded"
+        className="w-full sm:w-44 h-36 rounded"
+        placeholder="blur"
       />
       <div className="pl-5">
         <h2 className="text-3xl">{restaurant.name}</h2>
         <div className="flex items-start">
-        <Stars reviews={restaurant.reviews} />
+          <Stars reviews={restaurant.reviews} />
           <p className="ml-2 text-sm">{renderRating()}</p>
         </div>
-        <div className="mb-9">
+        <div className="mb-2 sm:mb-9">
           <div className="font-light flex text-reg">
             <Price price={restaurant.price} />
             <p className="mr-4 capitalize">{restaurant.cuisine.name}</p>

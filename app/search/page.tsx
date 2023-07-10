@@ -3,6 +3,7 @@ import SearchSideBar from "../components/search/SearchSideBar/SearchSideBar";
 import RestaurantCardSearch from "../components/search/RestaurantCardSearch/RestaurantCardSearch";
 import SearchBar from "../components/SearchBar/SearchBar";
 import { PRICE, PrismaClient, Restaurant } from "@prisma/client";
+import DrawerMenu from "../components/Drawer/DrawerMenu";
 
 const prisma = new PrismaClient();
 
@@ -47,7 +48,7 @@ const fetchRestaurantsByCity = (searchParams: Search_Params) => {
     cuisine: true,
     location: true,
     slug: true,
-    reviews:true,
+    reviews: true,
   };
 
   return prisma.restaurant.findMany({
@@ -79,26 +80,33 @@ const page = async ({
         <SearchBar />
       </div>
 
-      <div className="flex py-4 m-auto w-2/3 justify-between items-start">
-        <SearchSideBar
+      <div className="flex py-4 m-auto md:w-2/3 justify-center md:justify-between items-start">
+        <div className="hidden md:block">
+          <SearchSideBar
+            cuisines={cuisines}
+            locations={locations}
+            searchParams={searchParams}
+          />
+        </div>
+        <DrawerMenu
           cuisines={cuisines}
           locations={locations}
           searchParams={searchParams}
         />
-        <div className="w-4/6">
-          {restaurants.length ? (
-            <>
-              {restaurants.map((restaurant) => (
-                <RestaurantCardSearch
-                  restaurant={restaurant}
-                  key={restaurant.id}
-                />
-              ))}
-            </>
-          ) : (
+        {restaurants.length ? (
+          <div className="w-4/6 flex flex-col">
+            {restaurants.map((restaurant) => (
+              <RestaurantCardSearch
+                restaurant={restaurant}
+                key={restaurant.id}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="w-4/6">
             <span>Sorry, there is not restaurants in this area</span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </>
   );

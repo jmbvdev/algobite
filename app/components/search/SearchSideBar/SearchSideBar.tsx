@@ -35,7 +35,7 @@ const SearchSideBar = ({
     },
   ];
   return (
-    <div className="w-1/5">
+    <div className="w-full p-4 md:p-0">
       <div className="border-b pb-4 flex flex-col">
         <h1 className="mb-2">Region</h1>
         {locations.map((location) => (
@@ -74,7 +74,7 @@ const SearchSideBar = ({
       </div>
       <div className="mt-3 pb-4">
         <h1 className="mb-2">Price</h1>
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
           {prices.map(({ price, label, className }) => (
             <Link
               href={{

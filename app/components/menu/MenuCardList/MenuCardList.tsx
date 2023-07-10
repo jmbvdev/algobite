@@ -11,14 +11,14 @@ const MenuCardList = ({ menu }: { menu: Item[] }) => {
         </div>
 
         {menu.length ? (
-          <div className="flex flex-wrap justify-between">
+          <div className="flex flex-wrap md:flex-row flex-col justify-between">
             {menu.map((item) => (
               <MenuCard key={item.id} item={item} />
             ))}
           </div>
         ) : (
           <div className="flex flex-wrap justify-between">
-            'donst have a menu'
+            This restaurant doesn't have a menu.
           </div>
         )}
       </div>

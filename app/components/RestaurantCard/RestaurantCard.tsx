@@ -16,6 +16,7 @@ const RestaurantCard = ({ restaurant }: CardProps) => {
           src={restaurant.main_image}
           alt={restaurant.name}
           className="w-full h-36"
+          placeholder="blur"
         />
         <div className="flex flex-col gap-1 p-2 px-3">
           <h3 className="font-bold text-2xl mb-2">{restaurant.name}</h3>
